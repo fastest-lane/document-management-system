@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dms
+  labels:
+    app: dms
+    kubernetes.azure.com/generator: devhub
+  namespace: namespace-workflow-1731757743136
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dms
+  template:
+    metadata:
+      labels:
+        app: dms
+    spec:
+      containers:
+        - name: dms
+          image: K8dmsregistry.azurecr.io/image-workflow-1731757743136:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
